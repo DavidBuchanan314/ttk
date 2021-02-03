@@ -2,6 +2,7 @@
 
 #include <ttk.h>
 #include <string.h>
+#include <ctype.h>
 #define NUM_DEFS	(16)
 
 extern void ttk_do_gradient(ttk_surface srf, char horiz, int b_rad, int e_rad,

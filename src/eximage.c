@@ -45,4 +45,5 @@ int main (int argc, char **argv)
     ttk_free_image(img);
     ttk_free_window(mainwindow);
     ttk_quit();
+    return 0;
 }

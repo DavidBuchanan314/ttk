@@ -19,6 +19,7 @@
  */
 
 #include "ttk.h"
+#include <string.h>
 
 char thestring[256];
 int inputting = 0;

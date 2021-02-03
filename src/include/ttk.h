@@ -503,8 +503,10 @@ do { 			\
 #define TTK_TAP          6
 
 void ttk_gfx_init();
+void ttk_gfx_quit();
 void ttk_gfx_update (ttk_surface srf);
 void ttk_load_font (ttk_fontinfo *fi, const char *fname, int size);
+void ttk_unload_font (ttk_fontinfo *fi);
 int ttk_get_event (int *arg); /* ret=>ev code, see above; arg=>button pressed */
 int ttk_get_rawevent (int *arg);
 int ttk_getticks();

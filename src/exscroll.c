@@ -161,4 +161,5 @@ int main (int argc, char **argv)
     ttk_free_widget(scrollwidget);
     ttk_free_window(mainwindow);
     ttk_quit();
+    return 0;
 }

@@ -128,4 +128,5 @@ ttk_menu_item menu[] = {
     ttk_run();
     ttk_free_window(mainwindow);
     ttk_quit();
+    return 0;
 }
