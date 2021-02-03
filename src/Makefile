@@ -102,7 +102,7 @@ LIBSA += ../libs/SDL/*.a
 LIBS += -lpthread -lm
 else
 MYCFLAGS += -I/usr/include/SDL -I/usr/local/include/SDL `sdl-config --cflags`
-LIBS += `sdl-config --libs` -lSDL_image -lpng -ljpeg
+LIBS += `sdl-config --libs` -lSDL_image -lpng -ljpeg -lm
 endif
 
 else
