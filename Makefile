@@ -4,7 +4,7 @@ export MBD = yes
 
 all: build-dirs
 	@echo ">>> Building TTK..."
-ifndef NOHDOG
+ifdef DOHDOG
 ifndef NOIPOD
 	make -C build/ipod-hdog IPOD=1 HDOG=1 all
 endif
@@ -33,7 +33,7 @@ endif
 
 examples:
 	@echo ">>> Compiling examples..."
-ifndef NOHDOG
+ifdef DOHDOG
 ifndef NOIPOD
 	make -C build/ipod-hdog IPOD=1 HDOG=1 examples
 endif
@@ -75,7 +75,7 @@ build-dirs:
 install: all
 	@echo ">>> Installing TTK..."
 	cp ttk-config.in ttk-config.tmp
-ifndef NOHDOG
+ifdef DOHDOG
 ifndef NOIPOD
 	make -C build/ipod-hdog IPOD=1 HDOG=1 install
 endif
@@ -114,7 +114,7 @@ endif
 
 clean:
 	@echo ">>> Cleaning..."
-ifndef NOHDOG
+ifdef DOHDOG
 	make -C build/ipod-hdog IPOD=1 HDOG=1 clean
 	make -C build/x11-hdog HDOG=1 clean
 endif
