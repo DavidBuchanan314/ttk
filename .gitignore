@@ -1,0 +1,11 @@
+# latex artefacts
+
+API/API.pdf
+API/API.aux
+API/API.log
+API/API.out
+API/API.toc
+
+# build artefacts
+build/
+ttk-config
