@@ -518,7 +518,7 @@ int ttk_run()
     int ev, earg, eret;
     int in, st, touch;
     int iter = 0;
-    const char *keys = "mfwd\n", *p;
+    const unsigned char *keys = (const unsigned char*)"mfwd\n", *p;
     static int initd = 0;
     int local, global;
     static int sofar = 0;
