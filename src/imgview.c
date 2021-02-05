@@ -292,7 +292,6 @@ TWidget *ttk_new_imgview_widget (int w, int h, ttk_surface img)
 {
     TWidget *ret = ttk_new_widget (0, 0);
     imgview_data *data = calloc (sizeof(imgview_data), 1);
-    int maxdimen, W, H;
     float magW, magH;
     
     ret->w = w;

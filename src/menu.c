@@ -100,7 +100,6 @@ static void render (TWidget *this, int first, int n)
     ttk_color menu_selbg_color=0, menu_selfg_color=0;
     ttk_color menu_hdrbg_color=0, menu_hdrfg_color=0;
     _MAKETHIS;
-    int wid = this->w - 10*data->scroll;
 
     if (!data->itemsrf)  data->itemsrf  = calloc (data->allocation, sizeof(ttk_surface));
     if (!data->itemsrfI) data->itemsrfI = calloc (data->allocation, sizeof(ttk_surface));
@@ -271,7 +270,6 @@ ttk_menu_item *ttk_menu_get_selected_item (TWidget *this)
 void ttk_menu_item_updated (TWidget *this, ttk_menu_item *p)
 {
     _MAKETHIS;
-    int i;
 
     if (!this) this = p->menu;
     p->menu = this;
@@ -589,7 +587,6 @@ void ttk_menu_remove_groups( TWidget *this )
 	int count = 0;
 	_MAKETHIS;
 	ttk_menu_item * tmi = NULL;
-	ttk_menu_item * pmi = NULL;
 
 	for( count=0 ; count < data->items ; count++ ) {
 		tmi = data->menu[count];
@@ -697,8 +694,6 @@ void ttk_menu_updated (TWidget *this)
 {
     ttk_menu_item *p, **q;
     _MAKETHIS;
-
-    int olditems = data->items;
 
     p = data->mlist;
     data->items = 0;
@@ -824,7 +819,6 @@ void ttk_menu_flash (ttk_menu_item *item, int n)
 
 TWidget *ttk_new_menu_widget (ttk_menu_item *items, ttk_font font, int w, int h)
 {
-    ttk_menu_item *p;
     TWidget *ret = ttk_new_widget (0, 1);
     menu_data *data = calloc (sizeof(menu_data), 1);
     

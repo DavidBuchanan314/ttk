@@ -9,7 +9,7 @@ MYCFLAGS = -g
 else
 MYCFLAGS = -O2 -frename-registers -finline-functions -funroll-loops -fomit-frame-pointer
 endif
-MYCFLAGS += -I. -Wall -Wno-unused
+MYCFLAGS += -I. -Wall
 PREFIX ?= /usr
 ifdef IPOD
 CROSS ?= arm-uclinux-elf

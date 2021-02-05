@@ -73,8 +73,10 @@ void ttk_widget_noaction_0 (TWidget *w) {}
 #define SCHEMESDIR "schemes"
 #endif
 
+#ifdef IPOD
 static int C_timer_get_current();
 static int C_timer_check();
+#endif
 
 int ttk_version_check (int otherver) 
 {
@@ -212,7 +214,6 @@ ttk_fontinfo *ttk_get_fontinfo (const char *name, int size)
 {
     ttk_fontinfo *current = ttk_fonts;
     ttk_fontinfo *bestmatch = 0;
-    int havematch = 0;
     int bestmatchsize = -1;
 
     while (current) {
@@ -296,11 +297,9 @@ TWindow *ttk_init()
     ttk_color dots_3;
 
     if (!ttk_screen) {
-	int ver;
-
 	ttk_screen = malloc (sizeof(ttk_screeninfo));
 #ifdef IPOD
-	ver = ttk_get_podversion();
+	int ver = ttk_get_podversion();
 	if (ver & (TTK_POD_1G|TTK_POD_2G|TTK_POD_3G|TTK_POD_4G)) {
 	    ttk_screen->w = 160;
 	    ttk_screen->h = 128;
@@ -512,12 +511,9 @@ int ttk_run()
 {
     ttk_screeninfo *s = ttk_screen;
     TWindow *win;
-    TWidgetList *cur;
     TWidget *evtarget; // usually win->focus
     int tick, i;
     int ev, earg, eret;
-    int in, st, touch;
-    int iter = 0;
     const unsigned char *keys = (const unsigned char*)"mfwd\n", *p;
     static int initd = 0;
     int local, global;
@@ -526,6 +522,9 @@ int ttk_run()
     ttk_timer ctim;
     int textpos = 0;
     TWidget *pf;
+#ifdef IPOD
+    int in, st, touch;
+#endif
 
     ttk_started = 1;
 
@@ -929,6 +928,7 @@ void ttk_quit()
 }
 
 
+#ifdef IPOD
 static long iPod_GetGeneration() 
 {
     int i;
@@ -948,6 +948,7 @@ static long iPod_GetGeneration()
     
     return strtol(ptr, NULL, 16);
 }
+#endif
 
 static int ttk_get_podversion_raw() 
 {
@@ -1124,7 +1125,6 @@ void ttk_show_window (TWindow *win)
     if (!win->onscreen) {
 	TWindow *oldwindow = ttk_windows? ttk_windows->w : 0;
 	TWindowStack *next = ttk_windows;
-        TWidgetList *cur;
 	ttk_windows = malloc (sizeof(struct TWindowStack));
 	ttk_windows->w = win;
 	ttk_windows->minimized = 0;
@@ -1421,7 +1421,6 @@ void ttk_remove_header_widget (TWidget *wid)
 TWidget *ttk_new_widget (int x, int y) 
 {
     TWidget *ret = malloc (sizeof(TWidget));
-    int i;
     if (!ret) return 0;
 
     ret->x = x; ret->y = y; ret->w = 0; ret->h = 0;

@@ -30,7 +30,7 @@ int zoomSurfaceRGBA(SDL_Surface * src, SDL_Surface * dst, int smooth)
     int x, y, sx, sy, *sax, *say, *csax, *csay, csx, csy, ex, ey, t1, t2, sstep;
     tColorRGBA *c00, *c01, *c10, *c11;
     tColorRGBA *sp, *csp, *dp;
-    int sgap, dgap;
+    int dgap;
 
     /*
      * Variable setup 
@@ -85,7 +85,6 @@ int zoomSurfaceRGBA(SDL_Surface * src, SDL_Surface * dst, int smooth)
      */
     sp = csp = (tColorRGBA *) src->pixels;
     dp = (tColorRGBA *) dst->pixels;
-    sgap = src->pitch - src->w * 4;
     dgap = dst->pitch - dst->w * 4;
 
     /*
@@ -331,7 +330,7 @@ void transformSurfaceRGBA(SDL_Surface * src, SDL_Surface * dst, int cx, int cy, 
 {
     int x, y, t1, t2, dx, dy, xd, yd, sdx, sdy, ax, ay, ex, ey, sw, sh;
     tColorRGBA c00, c01, c10, c11;
-    tColorRGBA *pc, *sp, *spb;
+    tColorRGBA *pc, *sp;
     int gap;
 
     /*
@@ -492,7 +491,7 @@ void transformSurfaceRGBA(SDL_Surface * src, SDL_Surface * dst, int cx, int cy, 
 
 void transformSurfaceY(SDL_Surface * src, SDL_Surface * dst, int cx, int cy, int isin, int icos)
 {
-    int x, y, dx, dy, xd, yd, sdx, sdy, ax, ay, sw, sh;
+    int x, y, dx, dy, xd, yd, sdx, sdy, ax, ay;
     tColorY *pc, *sp;
     int gap;
 
@@ -503,8 +502,6 @@ void transformSurfaceY(SDL_Surface * src, SDL_Surface * dst, int cx, int cy, int
     yd = ((src->h - dst->h) << 15);
     ax = (cx << 16) - (icos * cx);
     ay = (cy << 16) - (isin * cx);
-    sw = src->w - 1;
-    sh = src->h - 1;
     pc = dst->pixels;
     gap = dst->pitch - dst->w;
     /*
@@ -599,7 +596,6 @@ SDL_Surface *rotozoomSurface(SDL_Surface * src, double angle, double zoom, int s
     double zoominv;
     double sanglezoom, canglezoom, sanglezoominv, canglezoominv;
     int dstwidthhalf, dstwidth, dstheighthalf, dstheight;
-    double x, y, cx, cy, sx, sy;
     int is32bit;
     int i, src_converted;
 

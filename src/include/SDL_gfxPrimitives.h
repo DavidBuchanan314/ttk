@@ -48,6 +48,8 @@ extern "C" {
     int fastPixelColor (SDL_Surface *dst, Sint16 x, Sint16 y, Uint32 color);
     int fastPixelByte (SDL_Surface *dst, Sint16 x, Sint16 y, Uint32 color);
     DLLINTERFACE int pixelColor(SDL_Surface * dst, Sint16 x, Sint16 y, Uint32 color);
+    DLLINTERFACE int pixelColorNolock(SDL_Surface *dst, Sint16 x, Sint16 y, Uint32 color);
+    DLLINTERFACE int pixelColorWeightNolock (SDL_Surface *dst, Sint16 x, Sint16 y, Uint32 color, Uint32 weight);
     DLLINTERFACE int pixelByte(SDL_Surface * dst, Sint16 x, Sint16 y, Uint32 color);
     DLLINTERFACE int pixelRGBA(SDL_Surface * dst, Sint16 x, Sint16 y, Uint8 r, Uint8 g, Uint8 b, Uint8 a);
 

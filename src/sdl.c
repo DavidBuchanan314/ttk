@@ -26,6 +26,7 @@
 #include <sys/stat.h>
 #ifdef SDL
 
+
 typedef struct Bitmap_Font
 {
     char *name;
@@ -1486,6 +1487,7 @@ two_byte_swap(unsigned char *buf, int nbytes)
 /*
  *	Invert byte order within each 32-bits of an array.
  */
+/* unused
 static void
 four_byte_swap(unsigned char *buf, int nbytes)
 {
@@ -1500,6 +1502,7 @@ four_byte_swap(unsigned char *buf, int nbytes)
 		buf[2] = c;
 	}
 }
+*/
 
 #define FILEP FILE*
 #define FREAD(a,b,c) fread(b,1,c,a)
@@ -1646,14 +1649,11 @@ static int
 pcf_read_encoding(FILE * file, struct encoding_entry **encoding)
 {
 	long offset, n;
-	unsigned long format;
 	struct encoding_entry *e;
 
 	if ((offset = pcf_get_offset(PCF_BDF_ENCODINGS)) == -1)
 		return -1;
 	fseek (file, offset, SEEK_SET);
-
-	format = readLSB32(file);
 
 	e = *encoding = (struct encoding_entry *)
 		malloc(sizeof(struct encoding_entry));
@@ -1716,7 +1716,6 @@ static void load_pcf (Bitmap_Font *bf, const char *fname)
     int glyph_count;
     unsigned long *goffset = 0;
     unsigned char *gwidth = 0;
-    int uc16;
     
     file = fopen (fname, "rb");
     if (!file) {
@@ -2079,8 +2078,8 @@ static void
 gen_gettextbits(Bitmap_Font *bf, int ch, const unsigned short **retmap,
 	int *pwidth, int *pheight, int *pbase)
 {
-    int 			count, width;
-    const unsigned short *	bits;
+    int width;
+    const unsigned short * bits;
 
     /* if char not in font, map to first character by default*/
     if(ch < bf->firstchar || ch >= bf->firstchar+bf->size)
@@ -2099,7 +2098,6 @@ gen_gettextbits(Bitmap_Font *bf, int ch, const unsigned short **retmap,
 	bits = bf->bits + (bf->height * ch);
     
     width = bf->width ? bf->width[ch] : bf->maxwidth;
-    count = ((width+15)/16) * bf->height; 
 
     *retmap = bits;
 
@@ -2158,14 +2156,8 @@ static void corefont_drawtext (Bitmap_Font *bf, ttk_surface srf, int x, int y,
 			       const void *text, int cc, ttk_color col)
 {
     const unsigned char *str = text;
-    int width, height, base, startx, starty;
+    int width, height, base;
     const unsigned short *bitmap;
-    int bgstate;
-    int clip;
-    
-    startx = x;
-    starty = y;
-    bgstate = 0; //xxx
 
     while (--cc >= 0 && x < srf->w) {
 	int ch = *str++;
@@ -2178,13 +2170,8 @@ static void corefont_drawtext (Bitmap_Font *bf, ttk_surface srf, int x, int y,
 static void corefont16_drawtext (Bitmap_Font *bf, ttk_surface srf, int x, int y,
                                  const unsigned short *str, int cc, ttk_color col) 
 {
-    int width, height, base, startx, starty;
+    int width, height, base;
     const unsigned short *bitmap;
-    int bgstate, clip;
-
-    startx = x;
-    starty = y;
-    bgstate = 0; //xxx
 
     while (--cc >= 0 && x < srf->w) {
         int ch = *str++;
@@ -2278,7 +2265,6 @@ static void draw_bf (ttk_font f, ttk_surface srf, int x, int y, ttk_color col, c
 static void lat1_bf (ttk_font f, ttk_surface srf, int x, int y, ttk_color col, const char *str)
 {
     const void *text = (const void *)str;
-    int cc = strlen (str);
     if (!f->bf) return;
 
     corefont_drawtext (f->bf, srf, x, y, text, strlen (str), col);

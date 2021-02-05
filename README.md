@@ -8,6 +8,11 @@ This fork has been given some *very* minor updates so that it can still be compi
 in 2021. I will be using it to develop a native Spotify client for classic iPods,
 which may involve various enhancements and/or bug fixes.
 
+### Maintanence TODOs:
+
+ - Replace [SDL\_gfxPrimitives](https://www.ferzkopp.net/Software/SDL_gfxPrimitives/index.html) with [SDL\_gfx](https://www.ferzkopp.net/wordpress/2016/01/02/sdl_gfx-sdl2_gfx/)
+
+
 The original README from ~2005 is preserved below.
 
 ```

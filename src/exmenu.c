@@ -118,9 +118,12 @@ ttk_menu_item menu[] = {
 
     TWindow *mainwindow;
     TWidget *menuwidget;
+    ttk_set_emulation(320, 240, 16);
     mainwindow = ttk_init();
     ttk_menufont = ttk_get_font ("Chicago", 12);
     ttk_textfont = ttk_get_font ("Espy Sans", 10);
+    ttk_ap_load("./schemes/familiar.cs");
+    ttk_epoch++;
 
     menuwidget = ttk_new_menu_widget (menu, ttk_textfont, mainwindow->w, mainwindow->h);
     ttk_add_widget (mainwindow, menuwidget);
